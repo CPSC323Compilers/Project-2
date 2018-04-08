@@ -1,0 +1,67 @@
+Key
+A = <Rat18S>
+B = <Opt Function Definitions>
+C = <Function Definitions>
+D = <Function>
+E = <Opt Parameter List>
+F = <Parameter List>
+G = <Parameter>
+H = <Qualifier>
+I = <Body>
+J = <Opt Declaration List>
+K = <Declaration List>
+L = <Declaration>
+M = <IDs>
+N = <Statement List>
+O = <Statement>
+P = <Compound>
+Q = <Assign>
+R = <If>
+S = <Return>
+T = <Print>
+U = <Scan>
+V = <While>
+W = <Condition>
+X = <Relop>
+Y = <Expression>
+Z = <Term>
+A’ = <Factor>
+B’ = <Primary>
+C' = <Empty>
+D’ = <Identifiers>
+E’ = <Integer>
+F’ = <Real>
+ 
+Productions
+R1) A -> B %% BN
+R2) B -> C | C'
+R3) C -> D | DC
+R4) D -> function D'[E]JI
+R5) E -> F | C'
+R6) F -> G | G, F
+R7) G -> M : H
+R8) H -> int | boolean | real
+R9) I -> {N}
+R10) J -> K | C'
+R11) K -> L; | L;K
+R12) L -> HM
+R13) M -> D' | D', M
+R14) N -> O | ON
+R15) O -> P | Q | R | S | T | U | V
+R16) P -> {N}
+R17) Q -> D' = Y
+R18) R -> if (W)O endif | if (W)O else O endif
+R19) S -> return; | return Y;
+R20) T -> put(Y);
+R21) U -> get(M);
+R22) V -> while(W)O
+R23) W -> YXY
+R24) X -> == | ^= | > | < | => | =<
+R25) Y -> Y+Z | Y-Z | Z
+R26) Z -> Z*A' | Z/A' | A'
+R27) A' -> -B' | B'
+R28) B' -> D' | E' | D'(M) | (Y) | F' | true | false
+R29) C' -> 
+
+
+
