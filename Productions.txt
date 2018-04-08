@@ -25,12 +25,12 @@ W = <Condition>
 X = <Relop>
 Y = <Expression>
 Z = <Term>
-A’ = <Factor>
-B’ = <Primary>
+Aâ€™ = <Factor>
+Bâ€™ = <Primary>
 C' = <Empty>
-D’ = <Identifiers>
-E’ = <Integer>
-F’ = <Real>
+Dâ€™ = <Identifiers>
+Eâ€™ = <Integer>
+Fâ€™ = <Real>
  
 Productions
 R1) A -> B %% BN
@@ -64,4 +64,22 @@ R28) B' -> D' | E' | D'(M) | (Y) | F' | true | false
 R29) C' -> 
 
 
+Remove direct-left recursion for the following:
+R25) Y -> Y+Z | Y-Z | Z
+R26) Z -> Z*A | Z/A' | A'
 
+Result:
+R25) Y -> ZYprime
+     Yprime -> +ZYprime | -ZYprime | epsilon
+
+R26) Z -> A'Zprime
+     Zprime -> *A'Zprime | /A'Zprime | epsilon
+     
+So, our new rules will be updated to look like the following, starting from R25:
+R25) Y -> ZYprime
+R26) Yprime -> +ZYprime | -ZYprime | epsilon
+R27) Z -> A'Zprime
+R28) Zprime -> *A'Zprime | /A'Zprime | epsilon
+R29) A' -> -B' | B'
+R30) B' -> D' | E' | D'(M) | (Y) | F' | true | false
+R31) C' -> 
