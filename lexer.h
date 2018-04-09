@@ -16,7 +16,7 @@ public:
 	string variable;
 	string state;
 /*--------------------------Lexer cpp Methods----------------------------------------------*/
-	void isGenerated();
+	vector<Lexer> isGenerated();
 	void print_list();
 };
 #endif

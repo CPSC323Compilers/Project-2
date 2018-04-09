@@ -24,7 +24,7 @@ const string separators[] = { "(", ")", "{", "}", "[", "]", "," };
 
 
 /*-----------------------------------Start of main------------------------------------*/
-void Lexer::isGenerated() {
+vector<Lexer> Lexer::isGenerated() {
   ifstream fs("test1.txt");	//Open file
   //Check that the file is open
   if(!fs.is_open()) {
@@ -61,7 +61,7 @@ void Lexer::isGenerated() {
 	  }
   }
   fs.close();
-  print_list();
+  return tokens;
 }
 /*-----------------------------------End of main------------------------------------*/
 
