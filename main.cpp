@@ -5,12 +5,16 @@
 #include <cctype>	//isdigit(), isalpha()
 #include <iomanip>	//std::setw() 
 #include "lexer.h"
+#include "syntax.h"
 
 using namespace std;
 
 
 int main(){
+	vector<Lexer> tokens;
 	Lexer lexer;
-	lexer.isGenerated();
+	tokens = lexer.isGenerated();
+	//lexer.print_list();
+	
 	return 0;
 }
