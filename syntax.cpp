@@ -12,16 +12,17 @@ void retError() {
 	cout << "\nError on line: " << line_count << endl;
 }
 
-bool ruleA(vector<Lexer> tokens, bool printSwitch) {
+bool ruleA(std::vector<Lexer> tokens, bool printSwitch) {
 	cout << "<Rat18S>\n";
 	string token;
-	
+	cout << "dsfsdfs"<<token << endl;
 	if(printSwitch) {
 		cout << "A -> B %% BN\n";
 	}
-	
-	if(ruleB(printSwitch)) {
+	//if(ruleB(printSwitch)) {
 		
-	}
+	//}
+	
+	return true;
 	
 }

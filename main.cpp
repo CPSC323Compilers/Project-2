@@ -14,7 +14,7 @@ int main(){
 	vector<Lexer> tokens;
 	Lexer lexer;
 	tokens = lexer.isGenerated();
-	//lexer.print_list();
+	lexer.print_list();
 	
 	return 0;
 }

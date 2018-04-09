@@ -1,3 +1,14 @@
-! hello there !
+function convert$ [fahr:int]
+{
+           return 5 * (fahr -32) / 9;
+}
 
-Testing herher h32 12 355.5 432 dollasign$ symb0!s
+%%
+     int    low,  high, step$;      ! declarations !
+
+     get (low, high, step$);
+     while (low  <  high )  
+         {  put (low);
+             put (convert$ (low));
+             low =  low  +  step$;
+         } 
