@@ -1,4 +1,6 @@
-Key
+//--------------
+//   Key       |
+//--------------
 A = <Rat18S>
 B = <Opt Function Definitions>
 C = <Function Definitions>
@@ -25,61 +27,117 @@ W = <Condition>
 X = <Relop>
 Y = <Expression>
 Z = <Term>
-A’ = <Factor>
-B’ = <Primary>
+A' = <Factor>
+B' = <Primary>
 C' = <Empty>
-D’ = <Identifiers>
-E’ = <Integer>
-F’ = <Real>
- 
-Productions
-R1) A -> B %% BN
+
+Original Productions:
+R1) A -> B %% JN
 R2) B -> C | C'
 R3) C -> D | DC
-R4) D -> function D'[E]JI
+R4) D -> function id [ E ] JI
 R5) E -> F | C'
-R6) F -> G | G, F
+R6) F -> G | G,F
 R7) G -> M : H
 R8) H -> int | boolean | real
 R9) I -> {N}
 R10) J -> K | C'
 R11) K -> L; | L;K
 R12) L -> HM
-R13) M -> D' | D', M
+R13) M -> id | id, M
 R14) N -> O | ON
-R15) O -> P | Q | R | S | T | U | V
-R16) P -> {N}
-R17) Q -> D' = Y
-R18) R -> if (W)O endif | if (W)O else O endif
+R15) O -> P | Q | R | S | T | U | V 
+R16) P -> { N }
+R17) Q -> id = Y;
+R18) R -> if(W)O endif | if(W)O else O endif
 R19) S -> return; | return Y;
 R20) T -> put(Y);
 R21) U -> get(M);
-R22) V -> while(W)O
+R22) V -> while(W) O
 R23) W -> YXY
 R24) X -> == | ^= | > | < | => | =<
-R25) Y -> Y+Z | Y-Z | Z
-R26) Z -> Z*A' | Z/A' | A'
+R25) Y -> Y+Z | Y-Z | Z			<--Direct-left recursion
+R26) Z -> Z*A' | Z/A' | A'		<--Direct-left recursion
 R27) A' -> -B' | B'
-R28) B' -> D' | E' | D'(M) | (Y) | F' | true | false
-R29) C' -> 
+R28) B' -> id | int | id (M) | (Y) | real | true | false 
+R29) C' ->
 
 
-Remove direct-left recursion for the following:
-R25) Y -> Y+Z | Y-Z | Z
-R26) Z -> Z*A | Z/A' | A'
+Remove Direct-left recursion:
+Y -> ZYprime
+Yprime -> +ZYprime | -ZYprime | epsilon
 
-Result:
+Z -> A'Zprime
+Zprime -> *A'Zprime | /A'Zprime | epsilon
+
+-//-------------------------------------------
+//    Replace direct-left recursive rules:   |
+//--------------------------------------------
+
+R1) A -> B %% JN
+R2) B -> C | C'
+R3) C -> D | DC
+R4) D -> function id [ E ] JI
+R5) E -> F | C'
+R6) F -> G | G,F
+R7) G -> M : H
+R8) H -> int | boolean | real
+R9) I -> {N}
+R10) J -> K | C'
+R11) K -> L; | L;K
+R12) L -> HM		<-- indirect-left recursion
+R13) M -> id | id, M
+R14) N -> O | ON
+R15) O -> P | Q | R | S | T | U | V 
+R16) P -> { N }
+R17) Q -> id = Y;
+R18) R -> if(W)O endif | if(W)O else O endif
+R19) S -> return; | return Y;
+R20) T -> put(Y);
+R21) U -> get(M);
+R22) V -> while(W) O
+R23) W -> YXY
+R24) X -> == | ^= | > | < | => | =<
 R25) Y -> ZYprime
-     Yprime -> +ZYprime | -ZYprime | epsilon
-
-R26) Z -> A'Zprime
-     Zprime -> *A'Zprime | /A'Zprime | epsilon
-     
-So, our new rules will be updated to look like the following, starting from R25:
-R25) Y -> ZYprime
-R26) Yprime -> +ZYprime | -ZYprime | epsilon
+R26) Yprime -> +ZYprime | -ZYprime | epsilon			
 R27) Z -> A'Zprime
 R28) Zprime -> *A'Zprime | /A'Zprime | epsilon
 R29) A' -> -B' | B'
-R30) B' -> D' | E' | D'(M) | (Y) | F' | true | false
-R31) C' -> 
+R30) B' -> id | int | id (M) | (Y) | real | true | false 
+R31) C' ->
+
+
+//---------------------------------------
+//    Replace indirect-left recursion   |
+//---------------------------------------
+R1) A -> B %% JN
+R2) B -> C | C'
+R3) C -> D | DC
+R4) D -> function id [ E ] JI
+R5) E -> F | C'
+R6) F -> G | G,F
+R7) G -> M : H
+R8) H -> int | boolean | real
+R9) I -> {N}
+R10) J -> K | C'
+R11) K -> L; | L;K
+R12) L -> intM | booleanM | realM
+R13) M -> id | id, M
+R14) N -> O | ON
+R15) O -> P | Q | R | S | T | U | V 
+R16) P -> { N }
+R17) Q -> id = Y;
+R18) R -> if(W)O endif | if(W)O else O endif
+R19) S -> return; | return Y;
+R20) T -> put(Y);
+R21) U -> get(M);
+R22) V -> while(W) O
+R23) W -> YXY
+R24) X -> == | ^= | > | < | => | =<
+R25) Y -> ZYprime
+R26) Yprime -> +ZYprime | -ZYprime | epsilon			
+R27) Z -> A'Zprime
+R28) Zprime -> *A'Zprime | /A'Zprime | epsilon
+R29) A' -> -B' | B'
+R30) B' -> id | int | id (M) | (Y) | real | true | false 
+R31) C' ->
