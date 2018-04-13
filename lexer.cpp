@@ -18,10 +18,13 @@ void isGenerated();
 
 
 /* ----------Const keywords, operators, and separators--------------------------------*/
-const string keywords[] = { "while", "if", "else", "include", "for", "do" };
-const string operators[] = { "<", ">", "<=", ">=", "=", "+", "-", "+=", "-=", "*", "/", "*=", "/=" };
-const string separators[] = { "(", ")", "{", "}", "[", "]", "," };
+const string keywords[] = { "function", "int", "boolean", "real", "if", "endif", "else", "return", "put", "get", "while", "true", "false" };
+const string operators[] = { "=", "==", "^=", ">", "<", "=>", "=<", "+", "-", "*", "/", "_" };
+const string separators[] = { "%%", "[", "]", ",", ";", "{", "}", ":", "(", ")" };
 
+const int num_key = 13;
+const int num_op = 12;
+const int num_sep = 10;
 
 /*-----------------------------------Start of main------------------------------------*/
 vector<Lexer> Lexer::isGenerated() {
@@ -31,7 +34,6 @@ vector<Lexer> Lexer::isGenerated() {
     cout << "Could not find file. Aborting." << std::endl;
   }
   
-  //vector<Token> tokens;
   bool commentState = false;
   string comments = "";
 	
@@ -56,6 +58,8 @@ vector<Lexer> Lexer::isGenerated() {
 	  if(commentState) {
 		  comments += temp + ' ';
 	  }
+	  
+	  /*-------Non-comment section--------*/
 	  else {
 		  isValid(temp);
 	  }
@@ -152,7 +156,7 @@ bool isInteger(string original) {
 }
 
 bool isKeyword(string original) {
-	for(int i = 0; i < 6; i++) {
+	for(int i = 0; i < num_key; i++) {
 		if(original == keywords[i]) {
 			return true;
 		}
@@ -162,7 +166,7 @@ bool isKeyword(string original) {
 bool isSeparator(string original) {
 	//Checks the last character of the word to make sure that it does not have alpha or $ in string.
 	if (!isalpha(original[0]) && original[0] != '$'){
-		for(int i = 0; i < 7; i++) {
+		for(int i = 0; i < num_sep; i++) {
 			if(original == separators[i]) {
 				putVector(original, "Separator");
 			}
@@ -177,7 +181,7 @@ bool isSeparator(string original) {
 bool isOperator(string original) {
 	//Checks the last character of the word to make sure that it does not have alpha or $ in string.
 	if (!isalpha(original[0]) && original[0] != '$'){
-		for(int i = 0; i < 13; i++) {
+		for(int i = 0; i < num_op; i++) {
 			if(original == operators[i]) {
 				putVector(original, "Operator");
 				return true;
