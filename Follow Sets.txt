@@ -1,0 +1,36 @@
+Rules for Follow:
+if y begins with terminal q, include q
+otherwise include First(beta) - epsilon
+if y = epsilon, then include Follow(Q)
+
+Follow(A) = { $ }  				{ $ }
+Follow(B) = { %% }  				{ %% }
+Follow(C) = { Follow(B) } = { %% }		{ %% }
+Follow(D) = { Follow(C), First(C) - epsilon } = { %%, function }
+Follow(E) = { [ }				{ [ }
+Follow(F) = { Follow(E) } = { [ }		{ [ }
+Follow(G) = { Follow(F), , } = { [, ,, }	{ [, ,, }
+Follow(H) = { Follow(G) } = { [, ,, }		{ [, ,, }
+Follow(I) = { Follow(D) } = { %% }		{ %% }
+Follow(J) = { First(I) - epsilon } = { { }	{ { }
+Follow(K) = { Follow(J) } = { { }		{ { }
+Follow(L) = { ; }				{ ; }
+Follow(M) = { :, Follow(L), ) } = {:, ;, ) }	{ :, ;, ) }
+Follow(N) = { Follow(A), } } = { $, } }		{ $, } }
+Follow(O) = { Follow(N), First(N) - epsilon, endif, else, Follow(V) } = { $, }, {, id, if, return, put, get, while }
+Follow(P) = { Follow(O) } = { $, }, {, id, if, return, put, get, while }
+Follow(Q) = { Follow(O) } = { $, }, {, id, if, return, put, get, while }
+Follow(R) = { Follow(O) } = { $, }, {, id, if, return, put, get, while }
+Follow(S) = { Follow(O) } = { $, }, {, id, if, return, put, get, while }
+Follow(T) = { Follow(O) } = { $, }, {, id, if, return, put, get, while }
+Follow(U) = { Follow(O) } = { $, }, {, id, if, return, put, get, while }
+Follow(V) = { Follow(O) } = { $, }, {, id, if, return, put, get, while }
+Follow(W) = { ) }
+Follow(X) = { First(Y) - epsilon } = { -, id, int, (, real, true, false }
+Follow(Y) = { ;, ), First(X) - epsilon, Follow(W) } = { ;, ), ==, ^=, >, <, =>, =<, -, id, int, (, real, true, false }
+Follow(Yprime) = { Follow(Y) } = { ;, ), ==, ^=, >, <, =>, =<, -, id, int, (, real, true, false }
+Follow(Z) = { First(Yprime) - epsilon, Follow(Y) } = { +, -, ;, ), ==, ^=, >, <, =>, =<, -, id, int, (, real, true, false }
+Follow(Zprime) = { Follow(Z) } = { +, -, ;, ), ==, ^=, >, <, =>, =<, -, id, int, (, real, true, false }
+Follow(A') = { First(Zprime) - epsilon, Follow(Z) } = { *, /, +, -, ;, ), ==, ^=, >, <, =>, =<, -, id, int, (, real, true, false }
+Follow(B') = { Follow(A') } = { *, /, +, -, ;, ), ==, ^=, >, <, =>, =<, -, id, int, (, real, true, false }
+Follow(C') = { Follow(B), Follow(E), Follow(J) } = { %%, [, { }
