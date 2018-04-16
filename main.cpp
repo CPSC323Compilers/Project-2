@@ -11,10 +11,12 @@ using namespace std;
 
 
 int main(){
-	vector<Lexer> tokens;
 	Lexer lexer;
-	tokens = lexer.isGenerated();
+	Syntax syntax;
+	lexer.isGenerated();
 	lexer.print_list();
+	syntax.isGeneratedS();
+	
 	
 	return 0;
 }

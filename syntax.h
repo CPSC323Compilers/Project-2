@@ -2,18 +2,21 @@
 #define _SYNTAX_H
 #pragma once
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include "lexer.h"
+#include <iostream> 	//std::cout
+#include <string>	//string::string, string::length(), 
+#include <fstream>	//ofstrea::ofstream, ifstream::ifstream, open, close
+#include <vector>	//for vector, vector::size()
+#include <cctype>	//isdigit(), isalpha()
+#include <iomanip>	//std::setw() 
+
+using namespace std;
 
 class Syntax{
 public:
-	Syntax();
+	string state;
+	string variable;
+	void isGeneratedS();
+	
 };
-
-bool ruleA(std::vector<Lexer> tokens, bool printSwitch);
-//bool ruleB(bool printSwitch);
-void retError();
-
 #endif
+

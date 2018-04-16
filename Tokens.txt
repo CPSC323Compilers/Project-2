@@ -1,0 +1,24 @@
+ === State ===      === Token ===
+Keyword             function
+Identifier          convert$
+Separator           {
+Keyword             return
+Integer             5
+Operators           *
+Separator           }
+Separator           %%
+Keyword             int
+Comment             ! declarations ! 
+Keyword             get
+Keyword             while
+Operators           <
+Identifier          high
+Separator           )
+Separator           {
+Keyword             put
+Keyword             put
+Identifier          low
+Operators           =
+Identifier          low
+Operators           +
+Separator           }
