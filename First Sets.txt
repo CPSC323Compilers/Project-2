@@ -1,31 +1,39 @@
-First(C') = { epsilon }					
-First(B') = { id, int, (, real, true, false }		
-First(A') = { -, id, int, (, real, true, false}		
-First(Zprime) = { *, /, epsilon }			 
-First(Z) = { -, id, int, (, real, true, false }		
-First(Yprime) = { +, -, epsilon }			
-First(Y) = { -, id, int, (, real, true, false }		
-First(X) = { ==, ^=, >, <, =>, =< }			
-First(W) = { -, id, int, (, real, true, false }		
-First(V) = { while }					
-First(U) = { get }					
-First(T) = { put }					
-First(S) = { return }					
-First(R) = { if }					
-First(Q) = { id }					 
-First(P) = { { }					
-First(O) = { {, id, if, return, put, get, while }	
-First(N) = { {, id, if, return, put, get, while }	
-First(M) = { id }					
-First(L) = { int, boolean, real }			
-First(K) = { int, boolean, real }			
-First(J) = { int, boolean, real, epsilon }		
-First(I) = { { }					
-First(H) = { int, boolean, real }			 
-First(G) = { id }					
-First(F) = { id }					
-First(E) = { id }					 
-First(D) = { function }					
-First(C) = { function }					 
-First(B) = { function, epsilon }			
-First(A) = { function, epsilon }			 
+First(C') = { (nothing) }
+First(B'prime) = { epsilon, ( } 
+First(B') = { id, int, (, real, true, false }
+First(A') = { -, First(B') } = { -, int, (, real, true, false }
+First(Zprime) = { *, /, epsilon }
+First(Z) = { First(A') - epsilon } = { -, int, (, real, true, false }
+First(Yprime) = { +, -, epsilon }
+First(Y) = { First(Z) - epsilon } = { -, int, (, real, true, false }
+First(X) = { ==, ^=, >, <, =>, =< }
+First(W) = { First(Y) - epsilon } = { -, int, (, real, true, false }
+First(V) = { while }
+First(U) = { get }
+First(T) = { put }
+First(Sprime) = { ;, First(Y) - epsilon } = { ;, -, int, (, real, true, false }
+First(S) = { return }
+First(Rprime) = { endif, else }
+First(R) = { if }
+First(Q) = { id }
+First(P) = { { }
+First(O) = { {, id, if, return, put, get, while }
+First(Nprime) = { epsilon, First(O) - epsilon } = { epsilon, {, id, if, return, put, get, while }
+First(N) = { First(O) - epsilon } = { {, id, if, return, put, get, while }
+First(Mprime) = { epsilon, , }
+First(M) = { id }
+First(L) = { int, boolean, real }
+First(Kprime) = { epsilon, First(L) - epsilon } = { epsilon, int, boolean, real }
+First(K) = { First(L) - epsilon } = { int, boolean, real }
+First(J) = { First(K) - epsilon, First(C') - epsilon } = { int, boolean, real, (nothing) }
+First(I) = { { }
+First(H) = { int, boolean, real }
+First(G) = { First(M) - epsilon } = { id }
+First(Fprime) = {epsilon, , }
+First(F) = { epsilon, , }
+First(E) = { First(F) - epsilon, First(C') - epsilon } = { ,, (nothing) }
+First(D) = { function }
+First(Cprime) = { epsilon, First(D) - epsilon } = { epsilon, function }
+First(C) = { First(D) - epsilon } = { function }
+First(B) = { First(C) - espilon, First(C') - epsilon } = { function, (nothing) }
+First(A) = { First(B) - epsilon } = { function, (nothing) }

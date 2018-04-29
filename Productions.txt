@@ -110,34 +110,77 @@ R31) C' ->
 //---------------------------------------
 //    Replace indirect-left recursion   |
 //---------------------------------------
-R1) A -> B %% JN
+R1) A -> B %% JN						
 R2) B -> C | C'
-R3) C -> D | DC
+R3) C -> D | DC					<-- factorize
 R4) D -> function id [ E ] JI
 R5) E -> F | C'
-R6) F -> G | G,F
+R6) F -> G | G,F				<-- factorize
 R7) G -> M : H
 R8) H -> int | boolean | real
-R9) I -> {N}
+R9) I -> { N }
 R10) J -> K | C'
-R11) K -> L; | L;K
-R12) L -> intM | booleanM | realM
-R13) M -> id | id, M
-R14) N -> O | ON
+R11) K -> L; | L;K				<-- factorize
+R12) L -> int M | boolean M | real M
+R13) M -> id | id, M				<-- factorize
+R14) N -> O | ON				<-- factorize
 R15) O -> P | Q | R | S | T | U | V 
 R16) P -> { N }
 R17) Q -> id = Y;
-R18) R -> if(W)O endif | if(W)O else O endif
-R19) S -> return; | return Y;
+R18) R -> if(W)O endif | if(W)O else O endif	<-- factorize
+R19) S -> return; | return Y;			<-- factorize
 R20) T -> put(Y);
 R21) U -> get(M);
 R22) V -> while(W) O
-R23) W -> YXY
-R24) X -> == | ^= | > | < | => | =<
-R25) Y -> ZYprime
-R26) Yprime -> +ZYprime | -ZYprime | epsilon			
-R27) Z -> A'Zprime
-R28) Zprime -> *A'Zprime | /A'Zprime | epsilon
-R29) A' -> -B' | B'
-R30) B' -> id | int | id (M) | (Y) | real | true | false 
-R31) C' ->
+R24) W -> YXY
+R25) X -> == | ^= | > | < | => | =<
+R26) Y -> ZYprime
+R27) Yprime -> +ZYprime | -ZYprime | epsilon			
+R28) Z -> A'Zprime
+R29) Zprime -> *A'Zprime | /A'Zprime | epsilon
+R30) A' -> -B' | B'
+R31) B' -> id | int | id (M) | (Y) | real | true | false 
+R32) C' -> 
+
+//---------------------------------------
+//       Remove left factorization      |
+//---------------------------------------
+R1) A -> B %% JN						
+R2) B -> C | C'
+R3) C -> D Cprime
+R4) Cprime -> epsilon | D Cprime
+R5) D -> function id [ E ] JI
+R6) E -> F | C'
+R7) F -> G Fprime
+R8) Fprime -> epsilon | ,F
+R9) G -> M : H
+R10) H -> int | boolean | real
+R11) I -> { N }
+R12) J -> K | C'
+R13) K -> L; Kprime
+R14) Kprime -> epsilon | L; Kprime
+R15) L -> int M | boolean M | real M
+R16) M -> id Mprime
+R17) Mprime -> epsilon | ,M
+R18) N -> O Nprime
+R19) Nprime -> epsilon | O Nprime
+R20) O -> P | Q | R | S | T | U | V 
+R21) P -> { N }
+R22) Q -> id = Y;
+R23) R -> if(W)O Rprime
+R24) Rprime -> endif | else O endif
+R25) S -> return Sprime
+R26) Sprime -> ; | Y;
+R27) T -> put(Y);
+R28) U -> get(M);
+R29) V -> while(W) O
+R30) W -> YXY
+R31) X -> == | ^= | > | < | => | =<
+R32) Y -> ZYprime
+R33) Yprime -> +ZYprime | -ZYprime | epsilon			
+R34) Z -> A'Zprime
+R35) Zprime -> *A'Zprime | /A'Zprime | epsilon
+R36) A' -> -B' | B'
+R37) B' -> id B'prime | int | (Y) | real | true | false
+R38) B'prime -> epsilon | (
+R39) C' -> 
