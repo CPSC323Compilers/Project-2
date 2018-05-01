@@ -1,7 +1,7 @@
-First(C') = { (nothing) }
+First(C') = { epsilon }
 First(B'prime) = { epsilon, ( } 
 First(B') = { id, int, (, real, true, false }
-First(A') = { -, First(B') } = { -, int, (, real, true, false }
+First(A') = { -, First(B') - epsilon } = { -, int, (, real, true, false }
 First(Zprime) = { *, /, epsilon }
 First(Z) = { First(A') - epsilon } = { -, int, (, real, true, false }
 First(Yprime) = { +, -, epsilon }
@@ -25,15 +25,15 @@ First(M) = { id }
 First(L) = { int, boolean, real }
 First(Kprime) = { epsilon, First(L) - epsilon } = { epsilon, int, boolean, real }
 First(K) = { First(L) - epsilon } = { int, boolean, real }
-First(J) = { First(K) - epsilon, First(C') - epsilon } = { int, boolean, real, (nothing) }
+First(J) = { First(K) - epsilon, First(C') - epsilon } = { int, boolean, real }
 First(I) = { { }
 First(H) = { int, boolean, real }
 First(G) = { First(M) - epsilon } = { id }
 First(Fprime) = {epsilon, , }
-First(F) = { epsilon, , }
-First(E) = { First(F) - epsilon, First(C') - epsilon } = { ,, (nothing) }
+First(F) = { First(G) - epsilon } = { id }
+First(E) = { First(F) - epsilon, First(C') - epsilon } = { id }
 First(D) = { function }
 First(Cprime) = { epsilon, First(D) - epsilon } = { epsilon, function }
 First(C) = { First(D) - epsilon } = { function }
-First(B) = { First(C) - espilon, First(C') - epsilon } = { function, (nothing) }
-First(A) = { First(B) - epsilon } = { function, (nothing) }
+First(B) = { First(C) - espilon, First(C') - epsilon } = { function }
+First(A) = { First(B) - epsilon } = { function }

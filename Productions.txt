@@ -182,5 +182,5 @@ R34) Z -> A'Zprime
 R35) Zprime -> *A'Zprime | /A'Zprime | epsilon
 R36) A' -> -B' | B'
 R37) B' -> id B'prime | int | (Y) | real | true | false
-R38) B'prime -> epsilon | (
-R39) C' -> 
+R38) B'prime -> epsilon | (M)
+R39) C' -> epsilon

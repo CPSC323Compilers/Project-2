@@ -4,39 +4,38 @@ otherwise include First(beta) - epsilon
 if y = epsilon, then include Follow(Q)
 
 Follow(A) = { $ }  				
-Follow(B) = { %% }  				
+Follow(B) = { %% }
 Follow(C) = { Follow(B) } = { %% }
 Follow(Cprime) = { Follow(C) } = { %% }
-Follow(D) = { First(Cprime) - epsilon, Follow(C) } = { function, %% } 
+Follow(D) = { First(Cprime) - epsilon, Follow(C) } = { function, %% }
 Follow(E) = { ] }
 Follow(F) = { Follow(E), Follow(Fprime) } = { ] }
-Follow(Fprime) = { Follow(F) } = { [ }
-Follow(G) = { First(Fprime) - epsilon, Follow(F) } = { ,, ] }
+Follow(Fprime) = { Follow(F) } = { ] }
+Follow(G) = { First(Fprime) - epsilon, Follow(F) } = { ,, ] } 
 Follow(H) = { Follow(G) } = { ,, ] }
-Follow(I) = { Follow(D) } = { function, %% }
-Follow(J) = { First(I) - epsilon, First(N) - epsilon} = { {, id, if, return, put, get, while }
-Follow(K) = { Follow(J) = { {, id, if, return, put, get, while }
+Follow(I) = { Follow(D) } = { function, %% } 
+Follow(J) = { First(N) - epsilon, First(I) - epsilon } = { {, id, if, return, put, get, while }
+Follow(K) = { Follow(J) } = { {, id, if, return, put, get, while }
 Follow(Kprime) = { Follow(K) } = { {, id, if, return, put, get, while }
 Follow(L) = { ; }
 Follow(M) = { :, Follow(L), Follow(Mprime), ) } = { :, ;, ) }
-Follow(Mprime) = { Follow(M) } = { :, ; }
+Follow(Mprime) = { Follow(M) } = { :, ;, ) }
 Follow(N) = { Follow(A), } } = { $, } }
 Follow(Nprime) = { Follow(N) } = { $, } }
-Follow(O) = { First(Nprime) - epsilon, Follow(Nprime), First(Rprime) - epsilon, Follow(R), endif, Follow(V) } = { {, id, if, return, put, get, while, $, }, endif, else, endif }
-Follow(P) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else, endif }
-Follow(Q) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else, endif }
-Follow(R) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else, endif }
-Follow(Rprime) = { Follow(R) } = { {, id, if, return, put, get, while, $, }, endif, else, endif } 
-Follow(S) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else, endif }
-Follow(Sprime) = { Follow(S) } = { {, id, if, return, put, get, while, $, }, endif, else, endif }
-Follow(T) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else, endif }
-Follow(U) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else, endif } 
-Follow(V) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else, endif }
-Follow(W) = { ) } 
+Follow(O) = { First(Nprime) - epsilon, Follow(N), First(Rprime) - epsilon, Follow(V) } = { {, id, if, return, put, get, while, $, }, endif, else }
+Follow(P) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else }
+Follow(Q) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else }
+Follow(R) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else }
+Follow(Rprime) = { Follow(R) } = { {, id, if, return, put, get, while, $, }, endif, else }
+Follow(S) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else }
+Follow(T) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else }
+Follow(U) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else }
+Follow(V) = { Follow(O) } = { {, id, if, return, put, get, while, $, }, endif, else }
+Follow(W) = { ) }
 Follow(X) = { First(Y) - epsilon } = { -, int, (, real, true, false }
-Follow(Y) = { ;, ), First(X) - epsilon, Follow(W) } = { ;, ), ==, ^=, >, <, =>, =< }
+Follow(Y) = { ;, ), First(X) - epsilon } = { ;, ), ==, ^=, >, <, =>, =< }
 Follow(Yprime) = { Follow(Y) } = { ;, ), ==, ^=, >, <, =>, =< }
-Follow(Z) = { First(Yprime) - epsilon, Follow(Y) } = { +, -, ;, ), ==, ^=, >, <, =>, =< }
+Follow(Z) = { First(Yprime) - epsilon, Follow(Y), Follow(Yprime) }= { +, -, ;, ), ==, ^=, >, <, =>, =< }
 Follow(Zprime) = { Follow(Z) } = { +, -, ;, ), ==, ^=, >, <, =>, =< }
 Follow(A') = { First(Zprime) - epsilon, Follow(Z) } = { *, /, +, -, ;, ), ==, ^=, >, <, =>, =< }
 Follow(B') = { Follow(A') } = { *, /, +, -, ;, ), ==, ^=, >, <, =>, =< }
