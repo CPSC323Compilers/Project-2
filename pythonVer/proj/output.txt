@@ -1,0 +1,16 @@
+
+identifier:	integer
+separator:	,
+identifier:	i
+separator:	,
+identifier:	max
+delim:		;
+identifier:	sum
+identifier:	sum
+operators:	=
+delim:		;
+digit:		0
+identifier:	i
+operators:	=
+delim:		;
+digit:		1
